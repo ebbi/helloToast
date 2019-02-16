@@ -24,7 +24,21 @@ public class MainActivity extends AppCompatActivity {
 
         mShowCount = (TextView) findViewById(R.id.show_count);
 
+        // Restore the state.
+        if (savedInstanceState != null) {
+            mCount = savedInstanceState.getInt("count");
+            mShowCount.setText(String.valueOf(mCount));
+        }
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(LOG_TAG, "onSaveInstanceState");
+
+        outState.putInt("count", mCount);
+
+     }
 
     @Override
     public void onStart(){
